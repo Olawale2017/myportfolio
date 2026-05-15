@@ -1,0 +1,24 @@
+# Enable clean, extensionless URLs on Apache/cPanel/Hostinger.
+Options -MultiViews
+DirectoryIndex index.php
+RewriteEngine On
+
+# Canonical clean URLs for normal browser visits.
+# /index.php -> / and /admin/index.php -> /admin/
+RewriteCond %{REQUEST_METHOD} GET
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.php[\s?] [NC]
+RewriteRule ^(.*/)?index\.php$ /$1 [R=301,L,NE]
+
+# /services.php -> /services, /admin/login.php -> /admin/login, etc.
+RewriteCond %{REQUEST_METHOD} GET
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
+RewriteRule ^(.+?)\.php$ /$1 [R=301,L,NE]
+
+# Keep existing files and directories available, including assets, images, and uploads.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Route extensionless URLs to matching PHP files.
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+?)/?$ $1.php [L,QSA]
