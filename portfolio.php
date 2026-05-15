@@ -1,0 +1,7 @@
+<?php $pageTitle = 'Portfolio'; require __DIR__ . '/includes/header.php'; ?>
+<section class="page-hero"><p class="eyebrow">Portfolio</p><h1>Selected projects and growth systems.</h1><p>Examples of the kind of conversion-focused work this portfolio is built to showcase.</p></section>
+<section class="section"><div class="portfolio-grid light-grid">
+<?php $projects = [['Funnel Redesign for Consultant','Funnel Design','Created a streamlined lead magnet, booking path, and nurture sequence for a service provider.'],['Meta Ads Lead Engine','Meta Ads','Built campaign structure, offer testing plan, and landing page alignment for qualified leads.'],['TikTok Creative Testing Sprint','TikTok Ads','Launched a rapid testing matrix for hooks, angles, and creator-style ad concepts.'],['Premium Website Refresh','Website Design','Designed a mobile-first website with bolder positioning and clearer calls to action.'],['Email Welcome Automation','Email Marketing','Created a multi-step sequence to educate, segment, and convert new subscribers.'],['SEO Foundation Upgrade','SEO','Improved technical structure, metadata, and content targeting for stronger search visibility.']]; foreach ($projects as $project): ?>
+<article><span><?= e($project[1]) ?></span><h3><?= e($project[0]) ?></h3><p><?= e($project[2]) ?></p></article><?php endforeach; ?>
+</div></section>
+<?php require __DIR__ . '/includes/footer.php'; ?>
